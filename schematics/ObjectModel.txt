@@ -1,0 +1,29 @@
+
+An Object in our file system is abstract. Meaning it reacts dynamically. The type of the object does not matter.
+An Object can have many Objects as children although it's a text file.
+Meaning our textfiles and folders are all identified using the same type (objectF).
+
+----------------------------------------------------------------------------------------------------------------
+|   ID   |  NAME  |     CHILDREN    |    DATA    |  CREATED AT  |   EDITED AT  |    FOREIGN_ID   |  PARENT_ID  |
+----------------------------------------------------------------------------------------------------------------
+
+Events{
+    # onAccount{    //Initialize root folder (objectF) {0, "root", [], null, time.now, time.now, Account.ID}    }
+}
+
+Actions{
+    # createFolder(parentID, childName)
+    {   //Initialize folder (objectF) {++, childName, [], null, time.now, time.now, Account.ID, parentID}      }
+
+    # createFile(parentID, childName)
+    {   //Initialize file (objectF) {++, childName, null, "\0", time.now, time.now, Account.ID, parentID}   }
+
+    # getFile(fileID)
+    {   //Return file data (string) : "SELECT DATA FROM filesTb WHERE ID={fileID}"   }
+
+    # editFile(fileID, data)
+    {   //Edit file data : ("SELECT objectF from fileTb WHERE ID={fileID}").DATA = {data}   }
+
+    # getFolderContent(folderID)
+    {   //Return objectF(_name,_id) : [("SELECT objectF from fileTb WHERE parentID={folderId}")]   }
+}
