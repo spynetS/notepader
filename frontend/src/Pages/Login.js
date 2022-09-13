@@ -16,7 +16,7 @@ export default class Login extends React.Component
                     <div className="h-full flex flex-col items-center w-full gap-10 relative " >
                         <InputField placeholder="email" ></InputField>
                         <InputField placeholder="password" ></InputField>
-                        <a className="hover:text-gray-800" href="/signup" >Sign up here</a>
+                        <a className="hover:text-gray-800" href="/signup" >sign up here</a>
                         <div className="flex flex-col items-center justify-center bg-[#24D8C2] w-16 h-16 rounded-full duration-75 absolute -right-5 bottom-8 e cursor-pointer scale-100 hover:scale-110 " >
                             <IoIosArrowForward className="text-white text-5xl" ></IoIosArrowForward>
                         </div>
