@@ -12,15 +12,15 @@ export default class Login extends React.Component
             
             <div className="h-full flex flex-col justify-center items-center p-12 z-10" >
                 <div className="bg-[#363636] w-[450px] h-[500px] rounded-2xl shadow-lg flex flex-col items-center pt-12 col-span-1" >
-                    <h1 className="text-4xl text-white mb-16" >Login</h1>
-                    <div className="h-full flex flex-col items-center w-full gap-10 relative " >
+                    <h1 className="text-4xl text-white " >Signup</h1>
+                    <div className="h-full flex flex-col items-center w-full justify-center gap-10 relative " >
+                        <InputField placeholder="username" ></InputField>
                         <InputField placeholder="email" ></InputField>
                         <InputField placeholder="password" ></InputField>
-                        <a className="hover:text-gray-800" href="/signup" >Sign up here</a>
                         <div className="flex flex-col items-center justify-center bg-[#24D8C2] w-16 h-16 rounded-full duration-75 absolute -right-5 bottom-8 e cursor-pointer scale-100 hover:scale-110 " >
                             <IoIosArrowForward className="text-white text-5xl" ></IoIosArrowForward>
                         </div>
-
+                    
                         
                     </div>
                 </div>
