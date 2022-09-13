@@ -2,7 +2,6 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './Pages/Login';
 import Signup from './Pages/Signup';
-import EriksPage from './Pages/EriksPage';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
  
 function App() {
