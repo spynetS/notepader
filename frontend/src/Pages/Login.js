@@ -1,6 +1,7 @@
 import React from "react";
 import InputField from "../Components/InputField";
 import {IoIosArrowForward} from "react-icons/io"
+import axios from "axios";
 
 export default class Login extends React.Component
 {
@@ -17,7 +18,11 @@ export default class Login extends React.Component
                         <InputField placeholder="email" ></InputField>
                         <InputField placeholder="password" ></InputField>
                         <a className="hover:text-gray-800" href="/signup" >sign up here</a>
-                        <div className="flex flex-col items-center justify-center bg-[#24D8C2] w-16 h-16 rounded-full duration-75 absolute -right-5 bottom-8 e cursor-pointer scale-100 hover:scale-110 " >
+                        <div onClick={()=>{
+                            axios.post("http://localhost:8000/createfile/").then(r=>{
+
+                            })
+                        }} className="flex flex-col items-center justify-center bg-[#24D8C2] w-16 h-16 rounded-full duration-75 absolute -right-5 bottom-8 e cursor-pointer scale-100 hover:scale-110 " >
                             <IoIosArrowForward className="text-white text-5xl" ></IoIosArrowForward>
                         </div>
 
