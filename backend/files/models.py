@@ -5,7 +5,7 @@ from authentication.models import User
 class File (models.Model):
 
     name = models.TextField()
-    data = models.TextField()
+    data = models.TextField(default="")
     parent = models.ForeignKey('self', on_delete=models.CASCADE)
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)

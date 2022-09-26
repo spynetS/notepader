@@ -7,6 +7,8 @@ class User(models.Model):
     email    = models.EmailField(default="", null= False)
     password = models.TextField(default="", null= False)
 
+
+
 class U_session(models.Model):
     uId      = models.TextField(default="", null = False)
     data     = models.TextField(default="{}", null= False)
