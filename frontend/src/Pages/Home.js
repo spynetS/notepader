@@ -1,5 +1,7 @@
 import React from "react";
 import { Editor } from "react-draft-wysiwyg";
+import { EditorState } from 'draft-js';
+
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 class Home extends React.Component {
@@ -7,6 +9,7 @@ class Home extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            editorState : EditorState.createEmpty()
         };
     
     }
@@ -15,21 +18,28 @@ class Home extends React.Component {
     
     }
 
-    onEditorStateChange(e){
-        console.log(e)
-    }
-
+    onEditorStateChange = (editorState) => {
+        this.setState({
+          editorState,
+        });
+        console.log(editorState);
+      };
     render() {
+        const { editorState } = this.state;
+
+
         return (
            <div className="flex flex-row gap-2 h-screen" >
-            <div className="w-1/6    bg-green-200" >
+            <div className="w-1/6 bg-[#363636]" >
 
             </div>
-            <div className="w-full" >
+            <div className="w-full bg-[#232323]" >
             <Editor
-                toolbarClassName="toolbarClassName"
+                
+                editorState={editorState}
+                toolbarClassName="bg-gray-200"
                 wrapperClassName="wrapperClassName"
-                editorClassName="editorClassName"
+                editorClassName="text-white"
                 onEditorStateChange={this.onEditorStateChange}
                 />; 
             </div>
