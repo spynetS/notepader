@@ -24,3 +24,5 @@ yarn-error.log*
 
 frontend/node_modules
 frontend/node_modules/.cache/default-development
+backend/authentication/migrations/__pycache__/0001_initial.cpython-310.pyc
+backend/backend/__pycache__
