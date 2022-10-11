@@ -27,7 +27,10 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-       
+        console.log(JSON.parse(getCookie("session")).email)
+        axios.post("/getFiles/",{"email":JSON.parse(getCookie("session")).email}).then(r=>{
+            this.setState({files:r.data})
+        });
     }
 
     getFiles(){
@@ -52,7 +55,13 @@ class Home extends React.Component {
            <div className="bg-[#363636] flex flex-row gap-2 h-screen p-5" >
             <div className="w-1/6  flex flex-col gap-2" >
                 
-                <div className="flex flex-row w-full justify-evenly">
+                <div onClick={()=>{
+                    axios.post("/createFile/",{
+                        name:"file1.txt",
+                        id:"id",
+                        email:JSON.parse(getCookie("session")).email
+                    }).then(r=>{})
+                }} className="flex flex-row w-full justify-evenly">
                     <div className=" cursor-pointer hover:scale-105 bg-white h-12 w-full hover:bg-gray-500 p-2 justify-center rounded-md flex flex-col text-center duration-100" >
                         New file
                     </div>
