@@ -15,3 +15,9 @@ def createFile(request):
     )
     
     return HttpResponse(req['name'],status=200)
+
+def getFiles(request):
+    req = extract(request)
+    files = File.objects.filter(user=User.objects.filter(email=req["email"])[0])
+    
+    return HttpResponse(json.dumps(files))

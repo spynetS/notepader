@@ -4,8 +4,15 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Home from './Pages/Home';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
+import axios from 'axios';
  
 function App() {
+
+  axios.defaults.headers.common['Content-Type'] = 'application/json';
+
+  axios.defaults.baseURL = 'http://localhost:8000';
+
+
   return (
       <BrowserRouter className="w-screen h-screen">
         <Routes className="w-full h-full">

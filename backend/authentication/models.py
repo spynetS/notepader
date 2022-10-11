@@ -10,5 +10,5 @@ class User(models.Model):
 
 
 class U_session(models.Model):
-    uId      = models.TextField(default="", null = False)
+    user     = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
     data     = models.TextField(default="{}", null= False)
