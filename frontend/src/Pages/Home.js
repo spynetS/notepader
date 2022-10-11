@@ -9,7 +9,7 @@ import axios from "axios";
 function File(props){
 
     return (
-        <div className="bg-white p-2 rounded-lg hover:bg-gray-600 hover:scale-110 duration-150 " >
+        <div onClick={()=>{props.trigger(props.id)}} className="bg-white p-2 rounded-lg hover:bg-gray-600 hover:scale-110 duration-150 " >
             {props.name}
         </div>)
 
@@ -22,6 +22,7 @@ class Home extends React.Component {
         this.state = {
             editorState : EditorState.createEmpty(),
             files : [],
+            currentFile : null
         };
 
     }
@@ -36,7 +37,16 @@ class Home extends React.Component {
     getFiles(){
         let files = []
         for(let i = 0;i<this.state.files.length;i++){
-            files.push(<File name={this.state.files[i].name} />)
+            files.push(<File trigger={(e)=>{
+                this.setState({currentFile:i})
+                if(this.state.files[i].data!=""){
+                    this.setState({editorState : this.state.files[i].data})
+                }   
+                else{
+                    this.setState({editorState : EditorState.createEmpty()})
+                }         
+            }
+            } name={this.state.files[i].name} />)
         }
         return files;
     }
@@ -45,8 +55,17 @@ class Home extends React.Component {
         this.setState({
           editorState,
         });
-        console.log(editorState);
-      };
+        if(this.state.currentFile != null){
+            let file = this.state.files;
+            file[this.state.currentFile].data = editorState;
+
+            axios.post("/updateData/",{file:file}).then(r=>{
+                
+            })
+
+            this.setState({files:file})
+        }
+    };
     render() {
         const { editorState } = this.state;
 
