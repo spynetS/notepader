@@ -29,14 +29,14 @@ class Home extends React.Component {
     componentDidMount() {
         console.log(JSON.parse(getCookie("session")).email)
         axios.post("/getFiles/",{"email":JSON.parse(getCookie("session")).email}).then(r=>{
-            this.setState({files:r.data})
+            this.setState({files:(r.data)})
         });
     }
 
     getFiles(){
         let files = []
         for(let i = 0;i<this.state.files.length;i++){
-            files.push(<File name={this.state.files[i]} />)
+            files.push(<File name={this.state.files[i].name} />)
         }
         return files;
     }

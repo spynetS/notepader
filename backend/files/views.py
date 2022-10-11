@@ -25,6 +25,9 @@ def createFile(request):
 
 def getFiles(request):
     req = extract(request)
-    files = str(File.objects.filter(user=User.objects.filter(email=req["email"])[0]))
+    files = File.objects.filter(user=User.objects.filter(email=req["email"])[0])
+    fArr = []
+    for i in files:
+        fArr.append(i.retJson())
     
-    return HttpResponse(files)
+    return HttpResponse(json.dumps(fArr))

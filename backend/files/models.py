@@ -1,6 +1,8 @@
 from django.db import models
 from authentication.models import User
 
+import json
+
 # Create your models here.
 class File (models.Model):
 
@@ -11,12 +13,13 @@ class File (models.Model):
     updatedAt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return str({
+    def retJson(self):
+        ret = {
             "name":self.name,
             "data":self.data,
             "parent":self.parent,
-            "createdAt":self.createdAt,
-            "naupdatedAtme":self.updatedAt,
-            "user":self.user,
-        })
+            "createdAt": str(self.createdAt),
+            "naupdatedAtme": str(self.updatedAt)
+        }
+
+        return (ret)
