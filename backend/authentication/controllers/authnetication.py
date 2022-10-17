@@ -16,8 +16,8 @@ def loginUser(request):
     req  = extract(request)
     try:
         user = User.objects.filter(email=req["email"],password=(req["password"]))[0]
+        return HttpResponse(json.dumps({"email":user.email,"username":user.username}),status=200)
+
     except:
         return HttpResponse("no user with those cridensials",status=403)
-
-    return HttpResponse(json.dumps({"email":user.email,"username":user.username}),status=200)
 

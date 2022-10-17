@@ -25,5 +25,6 @@ urlpatterns = [
     path("signup/",authnetication.createUser),
     path("login/",authnetication.loginUser),
     path("getFiles/",views.getFiles),
+    path("updateFileData/",views.updateFileData),
 
 ]

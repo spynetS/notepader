@@ -31,3 +31,17 @@ def getFiles(request):
         fArr.append(i.retJson())
     
     return HttpResponse(json.dumps(fArr))
+
+def updateFileData(request):
+    req = extract(request)
+    try:
+        file = File.objects.filter(user=User.objects.filter(email=req["email"])[0],name=req["name"])[0]
+        file.data = req["data"]
+        file.save()
+        return HttpResponse("updated",status=200)
+
+
+    except Exception as a:
+        return HttpResponse(a,status=403)
+
+

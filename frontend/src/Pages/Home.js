@@ -56,10 +56,9 @@ class Home extends React.Component {
           editorState,
         });
         if(this.state.currentFile != null){
-            let file = this.state.files;
-            file[this.state.currentFile].data = editorState;
+            let file = this.state.files[this.state.currentFile];
 
-            axios.post("/updateData/",{file:file}).then(r=>{
+            axios.post("/updateFileData/",{data:editorState,id:file.id}).then(r=>{
                 
             })
 
