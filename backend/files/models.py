@@ -12,6 +12,7 @@ class File (models.Model):
     createdAt = models.DateTimeField(auto_now_add=True)
     updatedAt = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # add uniuq id so we can refrence it
 
     def retJson(self):
         ret = {

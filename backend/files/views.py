@@ -36,7 +36,7 @@ def updateFileData(request):
     req = extract(request)
     try:
         file = File.objects.filter(user=User.objects.filter(email=req["email"])[0],name=req["name"])[0]
-        file.data = req["data"]
+        file.data = json.dumps(req["data"])
         file.save()
         return HttpResponse("updated",status=200)
 

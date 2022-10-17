@@ -1,6 +1,6 @@
 import React from "react";
-import { Editor } from "react-draft-wysiwyg";
-import { EditorState } from 'draft-js';
+import { ContentState, Editor } from "react-draft-wysiwyg";
+import { convertFromRaw, convertToRaw, EditorState } from 'draft-js';
 
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { getCookie } from "../cookie";
@@ -39,12 +39,16 @@ class Home extends React.Component {
         for(let i = 0;i<this.state.files.length;i++){
             files.push(<File trigger={(e)=>{
                 this.setState({currentFile:i})
-                if(this.state.files[i].data!=""){
-                    this.setState({editorState : this.state.files[i].data})
+                console.log(EditorState.createEmpty())
+                 if(this.state.files[i].data!=""){
+                    let ob = (JSON.parse(this.state.files[i].data))
+                    console.log(ob)
+                    this.setState({editorState : EditorState.createWithContent(convertFromRaw(ob))})
+
                 }   
                 else{
                     this.setState({editorState : EditorState.createEmpty()})
-                }         
+                }        
             }
             } name={this.state.files[i].name} />)
         }
@@ -52,17 +56,17 @@ class Home extends React.Component {
     }
 
     onEditorStateChange = (editorState) => {
-        this.setState({
-          editorState,
-        });
+        this.setState({editorState:editorState})
         if(this.state.currentFile != null){
             let file = this.state.files[this.state.currentFile];
-
-            axios.post("/updateFileData/",{data:editorState,id:file.id}).then(r=>{
+            const contentState = editorState.getCurrentContent();
+            file.data = JSON.stringify(convertToRaw(contentState));
+            axios.post("/updateFileData/",{"data":convertToRaw(contentState),"name":file.name,"email":JSON.parse(getCookie("session"))["email"]}).then(r=>{
                 
             })
-
-            this.setState({files:file})
+            let files = this.state.files;
+            files[this.state.currentFile] = file;
+            this.setState({files:files})
         }
     };
     render() {
